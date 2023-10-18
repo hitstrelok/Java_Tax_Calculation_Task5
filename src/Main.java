@@ -40,7 +40,7 @@ public class Main {
 
         BigDecimal productNoVAT = (productOutcome.divide(valueOf(123), RoundingMode.HALF_EVEN)).multiply(valueOf(100));
 
-        System.out.println("Value without VAT: "+productNoVAT);
+        System.out.println("Value without VAT: " +productNoVAT);
 
 
 
