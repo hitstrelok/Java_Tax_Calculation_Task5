@@ -1,22 +1,46 @@
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+import static java.math.BigDecimal.valueOf;
 
 public class Main {
     public static void main(String[] args) {
 
-        double productNet = 9.99;
-        double productGross;
+        double productNetX = 9.99;
+        double productGrossX;
 
-        System.out.println("Product net: " + productNet);
-        productGross =productNet/(1-0.23);
+        System.out.println("Price without VAT: " + productNetX);
+        productGrossX =productNetX*1.23;
 
-        System.out.printf("Product gross: %.2f %n", productGross);
+        System.out.println("Price with VAT:" + productGrossX);
 
-        double productOutcome = productGross*10_000;
-        System.out.println("Price of 10,000 pcs of this product: "+productOutcome);
+        double productOutcomeX = productGrossX*10_000;
+        System.out.println("Value with VAT: "+productOutcomeX);
 
-        double productNoVAT = (productOutcome/123)*100;
+        double productNoVATX = (productOutcomeX/123)*100;
 
-        System.out.println("The value excluding VAT: "+productNoVAT);
+        System.out.println("Value without VAT: "+productNoVATX+"\n");
+
+
+
+        System.out.println("Using BigDecimal");
+
+
+        BigDecimal productNet = new BigDecimal(9.99).setScale(2, RoundingMode.HALF_DOWN);
+
+        System.out.println("Price without VAT: " + productNet);
+
+        BigDecimal productGross = productNet.multiply(valueOf(1.23)).setScale(2, RoundingMode.HALF_DOWN);
+
+        System.out.println("Price with VAT rounded:"+ productGross);
+
+        BigDecimal productOutcome = productGross.multiply(valueOf(10_000)).setScale(2, RoundingMode.HALF_DOWN);
+
+        System.out.println("Value with VAT: "+productOutcome);
+
+        BigDecimal productNoVAT = (productOutcome.divide(valueOf(123), RoundingMode.HALF_EVEN)).multiply(valueOf(100));
+
+        System.out.println("Value without VAT: "+productNoVAT);
 
 
 
