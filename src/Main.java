@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Using BigDecimal");
 
 
-        BigDecimal productNet = new BigDecimal(9.99).setScale(2, RoundingMode.HALF_DOWN);
+        BigDecimal productNet = new BigDecimal("9.99").setScale(2, RoundingMode.HALF_DOWN);
 
         System.out.println("Price without VAT: " + productNet);
 
